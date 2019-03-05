@@ -2,6 +2,7 @@ package com.tygg.account.api.controller;
 
 import com.tygg.account.api.client.OrderServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,14 +46,19 @@ import java.security.Principal;
 public class TestController {
 
     @Autowired
+    private RedisTemplate<String, String> redisTemplate;
+
+    @Autowired
     private OrderServiceClient orderServiceClient;
 
     @GetMapping("/test")
     public String test() {
+        redisTemplate.opsForValue().set("test", "test001");
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
         }
+        System.err.println(redisTemplate.opsForValue().get("test"));
         System.err.println("over");
         return "hello world, i'm account-service";
     }
