@@ -32,7 +32,7 @@ import org.springframework.stereotype.Component;
  * Date: 2019/3/5
  * Time: 下午3:15
  *
- * @author tianye@askingdata.com
+ * @author 931635602@qq.com
  */
 @Component
 public class AccountServiceClientFallback implements AccountServiceClient{

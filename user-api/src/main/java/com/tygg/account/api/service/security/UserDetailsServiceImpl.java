@@ -1,9 +1,11 @@
-package com.tygg.order.api.client;
+package com.tygg.account.api.service.security;
 
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.tygg.account.api.entity.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 /**
  * <pre>
@@ -31,15 +33,26 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  *          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  * </pre>
- * AccountServiceClient
+ * UserDetailsServiceImpl
  * Date: 2019/3/5
- * Time: 下午2:55
+ * Time: 上午10:17
  *
  * @author 931635602@qq.com
  */
-@FeignClient(name = "account-service", fallback = AccountServiceClientFallback.class)
-public interface AccountServiceClient {
+@Service("userDetailsService")
+public class UserDetailsServiceImpl implements UserDetailsService {
 
-    @GetMapping(value = "/test", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    String test();
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+
+        User user = new User();
+        user.setUserId("id");
+        user.setUsername("tygg");
+        user.setPassword(encoder.encode("DUsgh_123456"));
+
+        return user;
+
+    }
 }

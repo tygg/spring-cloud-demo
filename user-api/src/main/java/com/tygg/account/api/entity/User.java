@@ -1,9 +1,10 @@
-package com.tygg.order.api.client;
+package com.tygg.account.api.entity;
 
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
+import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
 
 /**
  * <pre>
@@ -31,15 +32,53 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  *          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  * </pre>
- * AccountServiceClient
+ * User
  * Date: 2019/3/5
- * Time: 下午2:55
+ * Time: 上午10:17
  *
  * @author 931635602@qq.com
  */
-@FeignClient(name = "account-service", fallback = AccountServiceClientFallback.class)
-public interface AccountServiceClient {
+@Data
+public class User implements UserDetails {
 
-    @GetMapping(value = "/test", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    String test();
+    private String username;
+
+    private String password;
+
+    private String userId;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

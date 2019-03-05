@@ -1,9 +1,10 @@
-package com.tygg.order.api.client;
+package com.tygg.account.api.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.awt.*;
 
 /**
  * <pre>
@@ -31,14 +32,14 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  *          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  * </pre>
- * AccountServiceClient
+ * OrderServiceClient
  * Date: 2019/3/5
- * Time: 下午2:55
+ * Time: 下午2:46
  *
  * @author 931635602@qq.com
  */
-@FeignClient(name = "account-service", fallback = AccountServiceClientFallback.class)
-public interface AccountServiceClient {
+@FeignClient(name = "order-api")
+public interface OrderServiceClient {
 
     @GetMapping(value = "/test", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     String test();

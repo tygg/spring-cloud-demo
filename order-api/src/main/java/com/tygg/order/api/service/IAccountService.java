@@ -30,7 +30,7 @@ package com.tygg.order.api.service;
  * Date: 2019/3/5
  * Time: 下午2:54
  *
- * @author tianye@askingdata.com
+ * @author 931635602@qq.com
  */
 public interface IAccountService {
 

@@ -20,9 +20,9 @@
     </parent>
     <modules>
         <module>registry</module>
-        <module>account-service</module>
+        <module>user-api</module>
         <module>order-api</module>
-        <module>service-zuul</module>
+        <module>gateway</module>
         <module>service-gateway</module>
     </modules>
 

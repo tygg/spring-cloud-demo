@@ -1,0 +1,30 @@
+server:
+  port: 9700
+spring:
+  application:
+    name: user-api
+eureka:
+  client:
+    service-url:
+      defaultZone: http://register01:8760/eureka/,http://register02:8761/eureka/
+
+logging:
+  level:
+    org.springframework.security: INFO
+
+#ribbon的超时时间
+ribbon:
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
+
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 300000

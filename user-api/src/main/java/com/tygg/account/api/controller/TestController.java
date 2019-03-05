@@ -1,9 +1,13 @@
-package com.tygg.order.api.client;
+package com.tygg.account.api.controller;
 
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
+import com.tygg.account.api.client.OrderServiceClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.security.Principal;
 
 /**
  * <pre>
@@ -31,15 +35,36 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  *          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  * </pre>
- * AccountServiceClient
+ * TestController
  * Date: 2019/3/5
- * Time: 下午2:55
+ * Time: 上午11:08
  *
  * @author 931635602@qq.com
  */
-@FeignClient(name = "account-service", fallback = AccountServiceClientFallback.class)
-public interface AccountServiceClient {
+@RestController
+public class TestController {
 
-    @GetMapping(value = "/test", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    String test();
+    @Autowired
+    private OrderServiceClient orderServiceClient;
+
+    @GetMapping("/test")
+    public String test() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+        }
+        System.err.println("over");
+        return "hello world, i'm account-service";
+    }
+
+    @GetMapping("/test-order")
+    public String getOrderTest() {
+        return orderServiceClient.test();
+    }
+
+    @RequestMapping(path = "/current", method = RequestMethod.GET)
+    public String getCurrentAccount(Principal principal) {
+        return principal.getName();
+    }
+
 }

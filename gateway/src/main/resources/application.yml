@@ -1,0 +1,39 @@
+server:
+  port: 8769
+spring:
+  application:
+    name: gateway
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://register01:8760/eureka/,http://register02:8761/eureka/
+zuul:
+  routes:
+    order:
+      path: /order/**
+      serviceId: order-api
+    account:
+      path: /account/**
+      serviceId: account-service
+      sensitiveHeaders:
+  host:
+    connect-timeout-millis: 60000
+#    socket-timeout-millis: 3000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  maxAutoRetries: 1
+  MaxAutoRetiesNextServer: 2
+
+logging:
+  level:
+    org.springframework.cloud.netflix.zuul: DEBUG
