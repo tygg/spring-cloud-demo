@@ -1,5 +1,5 @@
 server:
-  port: 8769
+  port: 9800
 spring:
   application:
     name: gateway
@@ -14,8 +14,8 @@ zuul:
       path: /order/**
       serviceId: order-api
     account:
-      path: /account/**
-      serviceId: account-service
+      path: /user/**
+      serviceId: user-api
       sensitiveHeaders:
   host:
     connect-timeout-millis: 60000

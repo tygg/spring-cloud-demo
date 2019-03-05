@@ -10,11 +10,11 @@ eureka:
 security:
   oauth2:
     resource:
-      user-info-uri: http://localhost:8769/account/users/current
+      user-info-uri: http://localhost:9800/user/users/current
     client:
       clientId: order-api
       clientSecret: order-api
-      access-token-uri: http://localhost:8769/account/oauth/token
+      access-token-uri: http://localhost:9800/user/oauth/token
       grant_type: client_credentials
       scope: server
 
