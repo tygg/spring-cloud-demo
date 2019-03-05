@@ -1,0 +1,36 @@
+server:
+  port: 9900
+spring:
+  application:
+    name: order-api
+eureka:
+  client:
+    service-url:
+      defaultZone: http://register01:8760/eureka/,http://register02:8761/eureka/
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:8769/account/users/current
+    client:
+      clientId: order-api
+      clientSecret: order-api
+      access-token-uri: http://localhost:8769/account/oauth/token
+      grant_type: client_credentials
+      scope: server
+
+#ribbon的超时时间
+ribbon:
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
+
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000

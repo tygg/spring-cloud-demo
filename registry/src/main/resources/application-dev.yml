@@ -1,0 +1,16 @@
+server:
+  port: 8760
+
+eureka:
+  instance:
+    hostname: register02
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://register01:8761/eureka/
+
+spring:
+  application:
+    name: registry
+
