@@ -37,7 +37,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  * @author 931635602@qq.com
  */
-@FeignClient(name = "order-api", fallback = AccountServiceClientFallback.class)
+@FeignClient(name = "user-api", fallback = AccountServiceClientFallback.class)
 public interface AccountServiceClient {
 
     @GetMapping(value = "/test", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)

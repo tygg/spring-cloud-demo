@@ -36,4 +36,4 @@ ribbon:
 
 logging:
   level:
-    org.springframework.cloud.netflix.zuul: DEBUG
+    org.springframework.cloud.netflix.zuul: INFO

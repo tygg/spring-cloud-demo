@@ -5,6 +5,7 @@ import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,10 +43,14 @@ import java.io.IOException;
  *
  * @author 931635602@qq.com
  */
-//@Component
+@Component
 public class MyFilter extends ZuulFilter {
 
     private static final Logger LOG = LoggerFactory.getLogger(MyFilter.class);
+
+    @Value("${server.port}")
+    private String port;
+
     @Override
     public String filterType() {
         return "pre";
@@ -63,6 +68,7 @@ public class MyFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
+        System.err.println("i'm on port: ".concat(port));
 //        RequestContext ctx = RequestContext.getCurrentContext();
 //        HttpServletRequest request = ctx.getRequest();
 //        LOG.info(String.format("%s >>> %s", request.getMethod(), request.getRequestURL().toString()));
