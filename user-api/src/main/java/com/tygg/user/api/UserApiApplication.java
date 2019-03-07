@@ -1,4 +1,4 @@
-package com.tygg.account.api;
+package com.tygg.user.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

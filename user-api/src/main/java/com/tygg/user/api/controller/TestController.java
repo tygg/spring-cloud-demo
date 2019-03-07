@@ -1,6 +1,6 @@
-package com.tygg.account.api.controller;
+package com.tygg.user.api.controller;
 
-import com.tygg.account.api.client.OrderServiceClient;
+import com.tygg.user.api.client.OrderServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;

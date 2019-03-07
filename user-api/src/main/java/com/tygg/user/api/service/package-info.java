@@ -1,5 +1,3 @@
-package com.tygg.account.api.service;
-
 /**
  * <pre>
  *                             _ooOoo_
@@ -26,11 +24,10 @@ package com.tygg.account.api.service;
  *
  *          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  * </pre>
- * OrderService
+ * package-info
  * Date: 2019/3/5
- * Time: 下午2:46
+ * Time: 上午11:26
  *
  * @author 931635602@qq.com
  */
-public interface OrderService {
-}
+package com.tygg.user.api.service;

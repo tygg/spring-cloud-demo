@@ -8,9 +8,9 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<groupId>com.tygg</groupId>
-	<artifactId>service-zuul</artifactId>
+	<artifactId>gateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>service-zuul</name>
+	<name>gateway</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

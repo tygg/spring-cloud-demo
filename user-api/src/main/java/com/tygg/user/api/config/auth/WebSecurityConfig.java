@@ -1,4 +1,4 @@
-package com.tygg.account.api.config.auth;
+package com.tygg.user.api.config.auth;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

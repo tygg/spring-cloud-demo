@@ -1,10 +1,10 @@
-package com.tygg.account.api.client;
+package com.tygg.user.api.config.auth;
 
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import java.awt.*;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 
 /**
  * <pre>
@@ -32,15 +32,25 @@ import java.awt.*;
  *
  *          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  * </pre>
- * OrderServiceClient
+ * ResourceServerConfig
  * Date: 2019/3/5
- * Time: 下午2:46
+ * Time: 上午11:04
  *
  * @author 931635602@qq.com
  */
-@FeignClient(name = "order-api")
-public interface OrderServiceClient {
+@Configuration
+@EnableResourceServer
+public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
-    @GetMapping(value = "/test", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    String test();
+    @Override
+    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+        super.configure(resources);
+    }
+
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/", "/test").permitAll()
+                .anyRequest().authenticated();
+    }
 }

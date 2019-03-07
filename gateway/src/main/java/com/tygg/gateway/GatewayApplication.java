@@ -1,4 +1,4 @@
-package com.tygg.servicezuul;
+package com.tygg.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

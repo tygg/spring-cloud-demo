@@ -1,4 +1,4 @@
-package com.tygg.account.api.service.security;
+package com.tygg.user.api.service.security;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

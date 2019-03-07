@@ -1,10 +1,11 @@
-package com.tygg.account.api.entity;
+package com.tygg.user.api.config;
 
-import lombok.Data;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
  * <pre>
@@ -32,53 +33,22 @@ import java.util.Collection;
  *
  *          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  * </pre>
- * User
+ * RedisConfig
  * Date: 2019/3/5
- * Time: 上午10:17
+ * Time: 下午6:21
  *
- * @author 931635602@qq.com
+ * @author tianye@askingdata.com
  */
-@Data
-public class User implements UserDetails {
+@Configuration
+public class RedisConfig {
 
-    private String username;
-
-    private String password;
-
-    private String userId;
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
+    @Bean
+    public RedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(redisConnectionFactory);
+        redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(Object.class));
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.afterPropertiesSet();
+        return redisTemplate;
     }
 }

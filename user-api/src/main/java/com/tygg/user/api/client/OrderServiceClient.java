@@ -1,10 +1,8 @@
-package com.tygg.account.api.controller;
+package com.tygg.user.api.client;
 
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.security.Principal;
 
 /**
  * <pre>
@@ -32,18 +30,15 @@ import java.security.Principal;
  *
  *          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  * </pre>
- * UserController
+ * OrderServiceClient
  * Date: 2019/3/5
- * Time: 上午11:22
+ * Time: 下午2:46
  *
  * @author 931635602@qq.com
  */
-@RestController
-@RequestMapping("/users")
-public class UserController {
+@FeignClient(name = "order-api")
+public interface OrderServiceClient {
 
-    @GetMapping("/current")
-    public Principal getUser(Principal principal) {
-        return principal;
-    }
+    @GetMapping(value = "/test", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    String test();
 }

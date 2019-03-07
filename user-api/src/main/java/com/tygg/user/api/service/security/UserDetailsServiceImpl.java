@@ -1,3 +1,12 @@
+package com.tygg.user.api.service.security;
+
+import com.tygg.user.api.entity.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
 /**
  * <pre>
  *                             _ooOoo_
@@ -24,10 +33,26 @@
  *
  *          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  * </pre>
- * package-info
+ * UserDetailsServiceImpl
  * Date: 2019/3/5
- * Time: 上午11:26
+ * Time: 上午10:17
  *
  * @author 931635602@qq.com
  */
-package com.tygg.account.api.service;
+@Service("userDetailsService")
+public class UserDetailsServiceImpl implements UserDetailsService {
+
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+
+        User user = new User();
+        user.setUserId("id");
+        user.setUsername("tygg");
+        user.setPassword(encoder.encode("DUsgh_123456"));
+
+        return user;
+
+    }
+}
